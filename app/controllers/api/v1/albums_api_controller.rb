@@ -7,7 +7,7 @@ module Api
         desc 'Albums'
         get '' do
           albums = Album.all
-          present albums, with: Api::Entities::Album
+          present albums, with: Api::Entities::AlbumEntity
         end
       end
     end

@@ -4,10 +4,10 @@ module Api
       include Api::V1::Defaults
 
       namespace :photos do
-        desc 'Photos info'
+        desc 'Photos'
         get '' do
           photos = Photo.all
-          present photos, with: Api::Entities::Photo
+          present photos, with: Api::Entities::PhotoEntity
         end
       end
     end
