@@ -10,6 +10,6 @@ class Album < ApplicationRecord
   validates_length_of :name, maximum: 20
 
   def photos_count
-    Album.last.photos.count
+    self.photos.count
   end
 end
