@@ -1,6 +1,5 @@
 module Api
-  class Base < Grape::API
-    mount Api::V1::Base
-    mount Api::V1::AuthController
+  class GrapeController < Grape::API
+    mount Api::V1::GrapeController
   end
 end
