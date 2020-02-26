@@ -1,14 +1,12 @@
 module Api
-  module V1
-    class AlbumsApiController < Grape::API
-      include Api::V1::Defaults
+  class V1::AlbumsApiController < Grape::API
 
-      namespace :albums do
-        desc 'Albums'
-        get '' do
-          albums = Album.all
-          present albums, with: Api::Entities::AlbumEntity
-        end
+    before {authenticate}
+    namespace :albums do
+      desc 'Albums'
+      get '' do
+        albums = Album.all
+        present albums, with: Api::Entities::AlbumEntity::Full
       end
     end
   end
