@@ -1,6 +1,8 @@
 class User < ApplicationRecord
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  authenticates_with_sorcery!
+
+  # devise :database_authenticatable, :registerable,
+  #        :recoverable, :rememberable, :trackable, :validatable
 
   mount_uploader :image, PhotoUploader
 
@@ -13,5 +15,10 @@ class User < ApplicationRecord
 
   def display_name
     first_name.present? && last_name.present? ? "#{first_name} #{last_name}" : email
+  end
+
+  def auth_token
+    payload = {user_id: id}
+    JWT.encode payload, Rails.application.secrets.secret_key_base, 'HS256'
   end
 end

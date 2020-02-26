@@ -1,8 +1,16 @@
 module Api
-  module Entities
-    class UserEntity < Grape::Entity
+  module Entities::UserEntity
+    class Short < Grape::Entity
+      expose :username
+      expose :first_name
+      expose :last_name
+    end
 
-      expose :first_name, :last_name
+    class Full < Short
+      expose :id
+      expose :email
     end
   end
 end
+
+
